@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,10 @@
     <link rel="stylesheet" href="main.css">
     <title>Shopping List App</title>
 </head>
+
 <body>
     <div id="shopping-list">
-        <h1>{{header}}</h1>
+        <h1>{{header ? header.toLocaleUpperCase() : 'WELCOME'}}</h1>
         <input type="text" v-model="header">
     </div>
     <script src="https://unpkg.com/vue"></script>
@@ -21,9 +23,10 @@
         let shoppingList = new Vue({
             el: '#shopping-list',
             data: {
-                header: 'Vue is ready!123'
+                header: 'shopping list app'
             }
         })
     </script>
 </body>
+
 </html>
