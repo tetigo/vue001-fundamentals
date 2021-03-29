@@ -14,7 +14,11 @@
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
-        new Vue({
+        // com varialvel shoppingList podemos alterar o valor do
+        // header diretamente e vemos na tela alterar tanto header
+        // quanto input. O outro modo é alterar input e ver header mudar
+        // two-way data bind
+        let shoppingList = new Vue({
             el: '#shopping-list',
             data: {
                 header: 'Vue is ready!123'
