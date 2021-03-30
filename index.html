@@ -18,13 +18,13 @@
         </div>
         <div v-if="state === 'edit'" class="add-item-form">
             <!-- v-on tem shorthand @ -->
-            <input @keyup.enter="saveItem" type="text" v-model="newItem" placeholder="Add a new item">
+            <input @keyup.enter="saveItemFromInput" type="text" v-model="newItem" placeholder="Add a new item">
             <!-- v-bind tem shorthand : -->
             <button @click="saveItem" :disabled="newItem.length===0" class="btn btn-primary">Save Item</button>
         </div>
         <!-- <a v-bind:href="newItem" target="_blank">Dynamic Link</a> -->
         <ul>
-            <li v-for="item in items">{{item}}</li>
+            <li v-for="item in items" :class="{strikeout: item.purchased}">{{ item.label }}</li>
         </ul>
         <p v-if="items.length === 0">Nice job! You have bought all your items.</p>
     </div>
@@ -41,17 +41,38 @@
                 header: 'shopping list app',
                 newItem: '',
                 items: [
-                    // '10 party hats',
-                    // '2 board game',
-                    // '20 cups'
+                    {
+                        label: '10 party hats',
+                        purchased: false,
+                    },
+                    {
+                        label: '2 board game',
+                        purchased: true,
+                    },
+                    {
+                        label: '20 cups',
+                        purchased: false,
+                    },
                 ],
             },
             methods: {
-                saveItem: function(){
-                    this.items.push(this.newItem);
+                saveItem: function () {
+                    this.items.push({
+                        label: this.newItem,
+                        purchased: false,
+                    });
                     this.newItem = '';
                 },
-                changeState: function(newState){
+                saveItemFromInput: function () {
+                    if (this.newItem.length > 0) {
+                        this.items.push({
+                            label: this.newItem,
+                            purchased: false,
+                        });
+                        this.newItem = '';
+                    }
+                },
+                changeState: function (newState) {
                     this.state = newState;
                     this.newItem = '';
                 }
