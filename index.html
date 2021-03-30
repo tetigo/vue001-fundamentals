@@ -20,7 +20,7 @@
             <!-- v-on tem shorthand @ -->
             <input @keyup.enter="saveItem" type="text" v-model="newItem" placeholder="Add a new item">
             <!-- v-bind tem shorthand : -->
-            <button @click="saveItem" v-bind:disabled="newItem.length===0" class="btn btn-primary">Save Item</button>
+            <button @click="saveItem" :disabled="newItem.length===0" class="btn btn-primary">Save Item</button>
         </div>
         <!-- <a v-bind:href="newItem" target="_blank">Dynamic Link</a> -->
         <ul>
